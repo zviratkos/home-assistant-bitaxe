@@ -1,0 +1,10 @@
+{
+  "domain": "bitaxe",
+  "name": "BitAxe",
+  "version": "1.0",
+  "config_flow": true,
+  "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
+  "requirements": [],
+  "codeowners": ["@DerMiika"],
+  "iot_class": "local_push"
+}
