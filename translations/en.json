@@ -2,15 +2,16 @@
   "config": {
     "step": {
       "user": {
-        "title": "Configure BitAxe",
-        "description": "Please enter the IP address of your BitAxe device.",
+        "title": "Configure Bitaxe",
+        "description": "Please enter the IP address of your Bitaxe device.",
         "data": {
-          "ip_address": "IP Address"
+          "ip_address": "IP Address",
+          "device_name": "Device Name"
         }
       }
     },
     "error": {
-      "cannot_connect": "Failed to connect to BitAxe. Please check the IP address."
+      "cannot_connect": "Failed to connect to Bitaxe. Please check the IP address."
     }
   }
 }
