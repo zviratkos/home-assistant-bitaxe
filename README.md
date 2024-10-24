@@ -2,6 +2,11 @@
 
 This is a custom integration for Bitaxe miners in Home Assistant.
 
+## Features
+
+Monitor power, temperature, hashrate, and other mining metrics in real-time.
+Easily configure your Bitaxe device through Home Assistant's UI.
+
 ## Installation
 
 1. Navigate to your Home Assistant configuration directory. This is usually the `/config` directory in your Home Assistant setup.
@@ -24,3 +29,9 @@ To set up the integration, follow these steps:
 5.  Complete the setup.
 
 ## Screenshots
+
+### Setup Screen
+![Setup Screen](images/Setup.png)
+
+### Sensor Data Screen
+![Sensor Data Screen](images/Sensor.png)
