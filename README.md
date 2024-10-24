@@ -4,8 +4,8 @@ This is a custom integration for Bitaxe miners in Home Assistant.
 
 ## Features
 
-Monitor power, temperature, hashrate, and other mining metrics in real-time.
-Easily configure your Bitaxe device through Home Assistant's UI.
+- **Real-time Monitoring**: Keep track of power, temperature, hashrate, and other mining metrics in real-time.
+- **Easy Configuration**: Configure your Bitaxe device effortlessly through Home Assistant's user interface.
 
 ## Installation
 
