@@ -103,8 +103,10 @@ class BitAxeSensor(Entity):
             return "mdi:speedometer"
         elif sensor_type == "power":
             return "mdi:flash"
-        elif sensor_type in ["sharesAccepted", "sharesRejected"]:
+        elif sensor_type == "sharesAccepted":
             return "mdi:share"
+        elif sensor_type == "sharesRejected":
+            return "mdi:share-off"
         elif sensor_type == "temp":
             return "mdi:thermometer"
         elif sensor_type == "uptimeSeconds":
