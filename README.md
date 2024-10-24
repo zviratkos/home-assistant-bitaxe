@@ -14,7 +14,8 @@ Easily configure your Bitaxe device through Home Assistant's UI.
 2. Clone the repository directly into the `custom_components` folder (create the folder if it doesn't exist):
    ```bash
    mkdir -p custom_components
-   git clone https://github.com/DerMiika/Bitaxe-HA-Integration.git custom_components/bitaxe```
+   git clone https://github.com/DerMiika/Bitaxe-HA-Integration.git custom_components/bitaxe
+   ```
 
 3.  Restart Home Assistant.
 
@@ -31,7 +32,8 @@ To set up the integration, follow these steps:
 ## Screenshots
 
 ### Setup Screen
-![Setup Screen](images/Setup.png)
+<img src="images/Setup.png" alt="Setup Screen" style="max-width: 100%; height: auto;">
 
 ### Sensor Data Screen
-![Sensor Data Screen](images/Sensor.png)
+<img src="images/Sensor.png" alt="Sensor Data Screen" style="max-width: 100%; height: auto;">
+
