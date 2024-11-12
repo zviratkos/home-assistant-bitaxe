@@ -8,7 +8,7 @@
   "render_readme": true,
   "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
   "issue_tracker": "https://github.com/DerMiika/Bitaxe-HA-Integration/issues",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "zip_release": false,
   "filename": "custom_components/bitaxe"
 }
