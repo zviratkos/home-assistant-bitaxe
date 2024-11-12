@@ -1,5 +1,9 @@
 # Bitaxe Home Assistant Integration
 
+[![Active installations](https://badge.t-haber.de/badge/better_thermostat?kill_cache=1)](https://github.com/DerMiika/Bitaxe-HA-Integration)
+[![GitHub issues](https://img.shields.io/github/issues/DerMiika/Bitaxe-HA-Integration)](https://github.com/DerMiika/Bitaxe-HA-Integration/issues)
+[![Version - 1.0.1](https://img.shields.io/badge/version-1.0.1-blue)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
+
 This is a custom integration for Bitaxe miners in Home Assistant.
 
 ## Features
@@ -7,7 +11,7 @@ This is a custom integration for Bitaxe miners in Home Assistant.
 - **Real-time Monitoring**: Keep track of power, temperature, hashrate, and other mining metrics in real-time.
 - **Easy Configuration**: Configure your Bitaxe device effortlessly through Home Assistant's user interface.
 
-## Installation
+## Manual Installation
 
 1. Navigate to your Home Assistant configuration directory. This is usually the `/config` directory in your Home Assistant setup.
 
@@ -19,6 +23,16 @@ This is a custom integration for Bitaxe miners in Home Assistant.
 
 3.  Restart Home Assistant.
 
+## HACS Installation
+
+1. Open the HACS section in your Home Assistant.
+
+2. Go to **Integrations** and select **Add Repository**.
+
+3. Enter the URL for this repository: `https://github.com/DerMiika/Bitaxe-HA-Integration`.
+
+4. Install the integration and follow the configuration steps.
+
 ## Configuration
 
 To set up the integration, follow these steps:
@@ -28,6 +42,9 @@ To set up the integration, follow these steps:
 3. Enter the IP address of your Bitaxe miner.
 4.  Choose a name for your Bitaxe miner (this can be any name you prefer).
 5.  Complete the setup.
+
+## Version
+This is the first stable version (v1.0.1) compatible with HACS!
 
 ## Screenshots
 
