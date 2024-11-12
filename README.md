@@ -1,6 +1,6 @@
 # Bitaxe Home Assistant Integration
 
-[![Active installations](https://badge.t-haber.de/badge/better_thermostat?kill_cache=1)](https://github.com/DerMiika/Bitaxe-HA-Integration)
+[![Release Downloads](https://img.shields.io/github/downloads/DerMiika/Bitaxe-HA-Integration/total)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
 [![GitHub issues](https://img.shields.io/github/issues/DerMiika/Bitaxe-HA-Integration)](https://github.com/DerMiika/Bitaxe-HA-Integration/issues)
 [![Version - 1.0.1](https://img.shields.io/badge/version-1.0.1-blue)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
 
