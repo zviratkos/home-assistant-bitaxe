@@ -19,6 +19,8 @@ jobs:
 
       - name: Install HACS action
         uses: hacs/action@main
+        with:
+          category: "integration"
 
       - name: Run HACS check
         run: |
