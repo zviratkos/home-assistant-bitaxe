@@ -21,6 +21,7 @@ jobs:
         uses: hacs/action@main
         with:
           category: "integration"
+          repository: "DerMiika/Bitaxe-HA-Integration"
 
       - name: Run HACS check
         run: |
