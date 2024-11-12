@@ -1,0 +1,27 @@
+name: HACS CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  hacs:
+    name: HACS Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install HACS action
+        uses: hacs/action@v1
+
+      - name: Run HACS check
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python3 -m hacs.action
