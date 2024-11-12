@@ -1,7 +1,7 @@
 {
   "domain": "bitaxe",
-  "name": "BitAxe",
-  "version": "1.0",
+  "name": "Bitaxe",
+  "version": "1.0.1",
   "config_flow": true,
   "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
   "requirements": [],
