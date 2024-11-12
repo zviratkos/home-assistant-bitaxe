@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install HACS action
-        uses: hacs/action@v1
+        uses: hacs/action@master
 
       - name: Run HACS check
         run: |
