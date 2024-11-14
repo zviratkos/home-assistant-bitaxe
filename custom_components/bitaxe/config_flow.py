@@ -28,6 +28,9 @@ class BitAxeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 )
 
             # Entry mit IP-Adresse und Gerätenamen erstellen
+            await self.async_set_unique_id(ip_address)  # Einzigartige ID auf IP-Adresse setzen
+            self._abort_if_unique_id_configured()  # Sicherstellen, dass die IP-Adresse nicht doppelt hinzugefügt wird
+
             return self.async_create_entry(
                 title=device_name,
                 data={"ip_address": ip_address, "device_name": device_name}
