@@ -1,5 +1,6 @@
 import logging
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 # Set up logging for debugging
 _LOGGER = logging.getLogger(__name__)
@@ -7,7 +8,7 @@ _LOGGER = logging.getLogger(__name__)
 # Define the integration domain
 DOMAIN = "bitaxe"
 
-# Mapping for sensor-names
+# Mapping for sensor names
 SENSOR_NAME_MAP = {
     "power": "Power Consumption",
     "temp": "Temperature",
@@ -23,21 +24,22 @@ SENSOR_NAME_MAP = {
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up BitAxe sensors from a config entry."""
-    coordinator = hass.data[DOMAIN]["coordinator"]
-    device_name = entry.data["device_name"]  # Gerätname abrufen
+    # Fetch coordinator for the specific device from hass.data using a unique device ID
+    coordinator = hass.data[DOMAIN][entry.unique_id]["coordinator"]
+    device_id = entry.unique_id or entry.data["device_name"]  # Eindeutige ID oder Geräte-Name verwenden
 
     # Create sensors based on the fetched data from the coordinator
     sensors = [
-        BitAxeSensor(coordinator, "power", device_name),
-        BitAxeSensor(coordinator, "temp", device_name),
-        BitAxeSensor(coordinator, "hashRate", device_name),
-        BitAxeSensor(coordinator, "bestDiff", device_name),
-        BitAxeSensor(coordinator, "bestSessionDiff", device_name),
-        BitAxeSensor(coordinator, "sharesAccepted", device_name),
-        BitAxeSensor(coordinator, "sharesRejected", device_name),
-        BitAxeSensor(coordinator, "fanspeed", device_name),
-        BitAxeSensor(coordinator, "fanrpm", device_name),
-        BitAxeSensor(coordinator, "uptimeSeconds", device_name),
+        BitAxeSensor(coordinator, "power", device_id),
+        BitAxeSensor(coordinator, "temp", device_id),
+        BitAxeSensor(coordinator, "hashRate", device_id),
+        BitAxeSensor(coordinator, "bestDiff", device_id),
+        BitAxeSensor(coordinator, "bestSessionDiff", device_id),
+        BitAxeSensor(coordinator, "sharesAccepted", device_id),
+        BitAxeSensor(coordinator, "sharesRejected", device_id),
+        BitAxeSensor(coordinator, "fanspeed", device_id),
+        BitAxeSensor(coordinator, "fanrpm", device_id),
+        BitAxeSensor(coordinator, "uptimeSeconds", device_id),
     ]
 
     # Add sensors to Home Assistant with an initial update
@@ -46,12 +48,13 @@ async def async_setup_entry(hass, entry, async_add_entities):
 class BitAxeSensor(Entity):
     """Representation of a BitAxe sensor."""
 
-    def __init__(self, coordinator, sensor_type, device_name):
-        """Initialize the sensor with its type, data coordinator, and device name."""
+    def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_id: str):
+        """Initialize the sensor with its type, data coordinator, and device ID."""
         self.coordinator = coordinator
         self.sensor_type = sensor_type
-        self._attr_name = f"{device_name} {SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')}"
-        self._attr_unique_id = f"{device_id}_{sensor_type}"
+        self._device_id = device_id  # Speichern des Geräte-ID
+        self._attr_name = f"{SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')} ({device_id})"
+        self._attr_unique_id = f"{device_id}_{sensor_type}"  # Verwenden von device_id und sensor_type
         self._attr_icon = self._get_icon(sensor_type)
 
     @property
