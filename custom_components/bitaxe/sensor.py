@@ -22,21 +22,21 @@ SENSOR_NAME_MAP = {
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up BitAxe sensors from a config entry."""
     coordinator = hass.data[DOMAIN][entry.unique_id]["coordinator"]
-    device_id = entry.unique_id or entry.data.get("device_name", "default_device_id")
+    device_name = entry.data.get("device_name", "default_device_name")  # Geräte-Namen statt IP verwenden
 
-    _LOGGER.debug(f"Setting up sensors for device: {device_id}")
+    _LOGGER.debug(f"Setting up sensors for device: {device_name}")
 
     sensors = [
-        BitAxeSensor(coordinator, "power", device_id),
-        BitAxeSensor(coordinator, "temp", device_id),
-        BitAxeSensor(coordinator, "hashRate", device_id),
-        BitAxeSensor(coordinator, "bestDiff", device_id),
-        BitAxeSensor(coordinator, "bestSessionDiff", device_id),
-        BitAxeSensor(coordinator, "sharesAccepted", device_id),
-        BitAxeSensor(coordinator, "sharesRejected", device_id),
-        BitAxeSensor(coordinator, "fanspeed", device_id),
-        BitAxeSensor(coordinator, "fanrpm", device_id),
-        BitAxeSensor(coordinator, "uptimeSeconds", device_id),
+        BitAxeSensor(coordinator, "power", device_name),
+        BitAxeSensor(coordinator, "temp", device_name),
+        BitAxeSensor(coordinator, "hashRate", device_name),
+        BitAxeSensor(coordinator, "bestDiff", device_name),
+        BitAxeSensor(coordinator, "bestSessionDiff", device_name),
+        BitAxeSensor(coordinator, "sharesAccepted", device_name),
+        BitAxeSensor(coordinator, "sharesRejected", device_name),
+        BitAxeSensor(coordinator, "fanspeed", device_name),
+        BitAxeSensor(coordinator, "fanrpm", device_name),
+        BitAxeSensor(coordinator, "uptimeSeconds", device_name),
     ]
 
     async_add_entities(sensors, update_before_add=True)
@@ -44,13 +44,13 @@ async def async_setup_entry(hass, entry, async_add_entities):
 class BitAxeSensor(Entity):
     """Representation of a BitAxe sensor."""
 
-    def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_id: str):
+    def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_name: str):
         super().__init__()
         self.coordinator = coordinator
         self.sensor_type = sensor_type
-        self._device_id = device_id
-        self._attr_name = f"{SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')} ({device_id})"
-        self._attr_unique_id = f"{device_id}_{sensor_type}"
+        self._device_name = device_name
+        self._attr_name = f"{SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')} ({device_name})"
+        self._attr_unique_id = f"{device_name}_{sensor_type}"  # Verwenden von device_name statt IP
         self._attr_icon = self._get_icon(sensor_type)
 
         _LOGGER.debug(f"Initialized BitAxeSensor: {self._attr_name} with unique ID: {self._attr_unique_id}")
