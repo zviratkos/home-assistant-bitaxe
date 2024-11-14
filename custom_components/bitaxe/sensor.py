@@ -51,7 +51,7 @@ class BitAxeSensor(Entity):
         self.coordinator = coordinator
         self.sensor_type = sensor_type
         self._attr_name = f"{device_name} {SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')}"
-        self._attr_unique_id = f"{DOMAIN}_{sensor_type}"
+        self._attr_unique_id = f"{device_id}_{sensor_type}"
         self._attr_icon = self._get_icon(sensor_type)
 
     @property
