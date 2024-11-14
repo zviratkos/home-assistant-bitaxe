@@ -1,7 +1,7 @@
 {
   "domain": "bitaxe",
   "name": "Bitaxe Home Assistant Integration",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "config_flow": true,
   "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
   "requirements": [],
