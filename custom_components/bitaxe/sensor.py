@@ -1,13 +1,11 @@
 import logging
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-# Set up logging for debugging
 _LOGGER = logging.getLogger(__name__)
 
-# Define the integration domain
 DOMAIN = "bitaxe"
 
-# Mapping for sensor-names
 SENSOR_NAME_MAP = {
     "power": "Power Consumption",
     "temp": "Temperature",
@@ -23,10 +21,11 @@ SENSOR_NAME_MAP = {
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up BitAxe sensors from a config entry."""
-    coordinator = hass.data[DOMAIN]["coordinator"]
-    device_name = entry.data["device_name"]  # Gerätname abrufen
+    coordinator = hass.data[DOMAIN][entry.unique_id]["coordinator"]
+    device_name = entry.data.get("device_name", "default_device_name")  # Geräte-Namen statt IP verwenden
 
-    # Create sensors based on the fetched data from the coordinator
+    _LOGGER.debug(f"Setting up sensors for device: {device_name}")
+
     sensors = [
         BitAxeSensor(coordinator, "power", device_name),
         BitAxeSensor(coordinator, "temp", device_name),
@@ -40,37 +39,36 @@ async def async_setup_entry(hass, entry, async_add_entities):
         BitAxeSensor(coordinator, "uptimeSeconds", device_name),
     ]
 
-    # Add sensors to Home Assistant with an initial update
     async_add_entities(sensors, update_before_add=True)
 
 class BitAxeSensor(Entity):
     """Representation of a BitAxe sensor."""
 
-    def __init__(self, coordinator, sensor_type, device_name):
-        """Initialize the sensor with its type, data coordinator, and device name."""
+    def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_name: str):
+        super().__init__()
         self.coordinator = coordinator
         self.sensor_type = sensor_type
-        self._attr_name = f"{device_name} {SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')}"
-        self._attr_unique_id = f"{DOMAIN}_{sensor_type}"
+        self._device_name = device_name
+        self._attr_name = f"{SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')} ({device_name})"
+        self._attr_unique_id = f"{device_name}_{sensor_type}"  # Verwenden von device_name statt IP
         self._attr_icon = self._get_icon(sensor_type)
+
+        _LOGGER.debug(f"Initialized BitAxeSensor: {self._attr_name} with unique ID: {self._attr_unique_id}")
 
     @property
     def state(self):
-        """Return the state of the sensor."""
-        value = self.coordinator.data.get(self.sensor_type)
+        value = self.coordinator.data.get(self.sensor_type, None)
 
-        # Handle special formatting for uptime, power, and hash rate
         if self.sensor_type == "uptimeSeconds" and value is not None:
             return self._format_uptime(value)
         elif self.sensor_type == "power" and value is not None:
-            return round(value, 1)  # Round power to one decimal place
+            return round(value, 1)
         elif self.sensor_type == "hashRate" and value is not None:
-            return int(value)  # Display hash rate in GH/s as an integer
-        return value
+            return int(value)
+        return value if value is not None else "N/A"
 
     @staticmethod
     def _format_uptime(seconds):
-        """Convert uptime in seconds to a readable format."""
         days, remainder = divmod(seconds, 86400)
         hours, remainder = divmod(remainder, 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -78,7 +76,6 @@ class BitAxeSensor(Entity):
 
     @property
     def unit_of_measurement(self):
-        """Return the unit of measurement for each sensor."""
         if self.sensor_type == "power":
             return "W"
         elif self.sensor_type == "hashRate":
@@ -92,7 +89,6 @@ class BitAxeSensor(Entity):
         return None
 
     def _get_icon(self, sensor_type):
-        """Return the appropriate MDI icon for each sensor type."""
         if sensor_type == "bestSessionDiff":
             return "mdi:star"
         elif sensor_type == "bestDiff":
@@ -111,4 +107,4 @@ class BitAxeSensor(Entity):
             return "mdi:thermometer"
         elif sensor_type == "uptimeSeconds":
             return "mdi:clock"
-        return "mdi:help-circle"  # Default icon if none matched
+        return "mdi:help-circle"

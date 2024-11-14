@@ -1,10 +1,11 @@
 {
   "domain": "bitaxe",
-  "name": "Bitaxe",
-  "version": "1.0.1",
+  "name": "Bitaxe Home Assistant Integration",
+  "version": "1.0.2",
   "config_flow": true,
   "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
   "requirements": [],
   "codeowners": ["@DerMiika"],
-  "iot_class": "local_push"
+  "iot_class": "local_polling",
+  "icon": "custom_components/bitaxe/bitaxe_icon.png"
 }
