@@ -49,8 +49,8 @@ This is the first stable version (v1.0.1) compatible with HACS!
 ## Screenshots
 
 ### Setup Screen
-<img src="images/Setup.png" alt="Setup Screen" style="max-width: 100%; height: auto;">
+<img src="custom_components/bitaxe/images/Setup.png" alt="Setup Screen" style="max-width: 100%; height: auto;">
 
 ### Sensor Data Screen
-<img src="images/Sensor.png" alt="Sensor Data Screen" style="max-width: 100%; height: auto;">
+<img src="custom_components/bitaxe/images/Sensor.png" alt="Sensor Data Screen" style="max-width: 100%; height: auto;">
 
