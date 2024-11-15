@@ -18,7 +18,7 @@ This is a custom integration for Bitaxe miners in Home Assistant.
 2. Clone the repository directly into the `custom_components` folder (create the folder if it doesn't exist):
    ```bash
    mkdir -p custom_components
-   git clone https://github.com/DerMiika/Bitaxe-HA-Integration.git custom_components/bitaxe
+   git clone https://github.com/DerMiika/Bitaxe-HA-Integration.git /config/custom_components/bitaxe
    ```
 
 3.  Restart Home Assistant.
