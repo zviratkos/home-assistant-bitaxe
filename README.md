@@ -44,7 +44,7 @@ To set up the integration, follow these steps:
 5.  Complete the setup.
 
 ## Version
-This is the first stable version (v1.0.3) compatible with HACS!
+This is the first stable version (v1.0.4) compatible with HACS!
 
 ## Screenshots
 
