@@ -5,7 +5,6 @@
   "domains": ["bitaxe"],
   "iot_class": "local_polling",
   "render_readme": true,
-  "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
   "version": "1.0.3",
   "zip_release": false,
   "filename": "custom_components/bitaxe"
