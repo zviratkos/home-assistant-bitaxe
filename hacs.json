@@ -11,4 +11,5 @@
   "zip_release": false,
   "filename": "custom_components/bitaxe",
   "codeowners": ["@DerMiika"]
+  "logo": "custom_components/bitaxe/images/bitaxelogo.png"
 }
