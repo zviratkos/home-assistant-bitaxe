@@ -8,5 +8,5 @@
   "requirements": [],
   "codeowners": ["@DerMiika"],
   "iot_class": "local_polling",
-  "icon": "bitaxe/images/bitaxe_icon.png"
+  "icon": "images/bitaxe_icon.png"
 }
