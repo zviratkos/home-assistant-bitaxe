@@ -55,4 +55,4 @@ This is the first stable version (v1.0.4) compatible with HACS!
 <img src="custom_components/bitaxe/images/Sensor.png" alt="Sensor Data Screen" style="max-width: 100%; height: auto;">
 
 ## Credits
-This is fork of DerMika Bitaxe Integration https://github.com/DerMiika/Bitaxe-HA-Integration
+This is fork of DerMiika Bitaxe Integration https://github.com/DerMiika/Bitaxe-HA-Integration
