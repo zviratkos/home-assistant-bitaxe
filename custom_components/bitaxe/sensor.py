@@ -70,10 +70,6 @@ class BitAxeSensor(Entity):
         )
 
     @property
-    def entity_picture(self):
-        return "/local/bitaxe_icon.png"
-
-    @property
     def state(self):
         value = self.coordinator.data.get(self.sensor_type, None)
 
