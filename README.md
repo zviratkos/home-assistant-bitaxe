@@ -1,8 +1,8 @@
 # Bitaxe Home Assistant Integration
 
-[![Release Downloads](https://img.shields.io/github/downloads/DerMiika/Bitaxe-HA-Integration/total)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
-[![GitHub issues](https://img.shields.io/github/issues/DerMiika/Bitaxe-HA-Integration)](https://github.com/DerMiika/Bitaxe-HA-Integration/issues)
-[![Version - 1.0.4](https://img.shields.io/badge/version-1.0.4-blue)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
+[![Release Downloads](https://img.shields.io/github/downloads/zviratkos/home-assistant-bitaxe/total)](https://github.com/zviratkos/home-assistant-bitaxe/releases)
+[![GitHub issues](https://img.shields.io/github/issues/zviratkos/home-assistant-bitaxe)](https://github.com/zviratkos/home-assistant-bitaxe/issues)
+[![Version - 1.0.4](https://img.shields.io/badge/version-1.0.4-blue)](https://github.com/zviratkos/home-assistant-bitaxe/releases)
 
 This is a custom integration for Bitaxe miners in Home Assistant.
 
@@ -18,7 +18,7 @@ This is a custom integration for Bitaxe miners in Home Assistant.
 2. Clone the repository directly into the `custom_components` folder (create the folder if it doesn't exist):
    ```bash
    mkdir -p custom_components
-   git clone https://github.com/DerMiika/Bitaxe-HA-Integration.git /config/custom_components/bitaxe
+   git clone https://github.com/zviratkos/home-assistant-bitaxe.git /config/custom_components/bitaxe
    ```
 
 3.  Restart Home Assistant.
@@ -29,7 +29,7 @@ This is a custom integration for Bitaxe miners in Home Assistant.
 
 2. Go to **Integrations** and select **Add Repository**.
 
-3. Enter the URL for this repository: `https://github.com/DerMiika/Bitaxe-HA-Integration`.
+3. Enter the URL for this repository: `https://github.com/zviratkos/home-assistant-bitaxe`.
 
 4. Install the integration and follow the configuration steps.
 
@@ -54,3 +54,5 @@ This is the first stable version (v1.0.4) compatible with HACS!
 ### Sensor Data Screen
 <img src="custom_components/bitaxe/images/Sensor.png" alt="Sensor Data Screen" style="max-width: 100%; height: auto;">
 
+## Credits
+This is fork of DerMika Bitaxe Integration https://github.com/DerMiika/Bitaxe-HA-Integration
