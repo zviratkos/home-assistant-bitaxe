@@ -2,7 +2,7 @@
 
 [![Release Downloads](https://img.shields.io/github/downloads/zviratkos/home-assistant-bitaxe/total)](https://github.com/zviratkos/home-assistant-bitaxe/releases)
 [![GitHub issues](https://img.shields.io/github/issues/zviratkos/home-assistant-bitaxe)](https://github.com/zviratkos/home-assistant-bitaxe/issues)
-[![Version - 1.0.4](https://img.shields.io/badge/version-1.0.4-blue)](https://github.com/zviratkos/home-assistant-bitaxe/releases)
+[![Version - 1.0.0](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/zviratkos/home-assistant-bitaxe/releases)
 
 This is a custom integration for Bitaxe miners in Home Assistant.
 
