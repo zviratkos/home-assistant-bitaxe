@@ -18,7 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
         _LOGGER,
         name=f"BitAxe Sensor Data ({device_id})",
         update_method=lambda: fetch_bitaxe_data(ip_address),
-        update_interval=timedelta(seconds=30),
+        update_interval=timedelta(seconds=60),
     )
 
     await coordinator.async_refresh()
@@ -32,7 +32,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
     async_track_time_interval(
         hass,
         _update_coordinator(coordinator),
-        timedelta(seconds=30)
+        timedelta(seconds=60)
     )
 
     return True

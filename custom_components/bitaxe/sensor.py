@@ -1,5 +1,5 @@
 import logging
-from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.entity import Entity, DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -22,38 +22,52 @@ SENSOR_NAME_MAP = {
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up BitAxe sensors from a config entry."""
     coordinator = hass.data[DOMAIN][entry.unique_id]["coordinator"]
-    device_name = entry.data.get("device_name", "default_device_name")  # Geräte-Namen statt IP verwenden
+    device_name = entry.data.get("device_name", "default_device_name")
+    ip_address = entry.data.get("ip_address")
 
-    _LOGGER.debug(f"Setting up sensors for device: {device_name}")
+    _LOGGER.debug(f"Setting up sensors for device: {device_name} ({ip_address})")
 
     sensors = [
-        BitAxeSensor(coordinator, "power", device_name),
-        BitAxeSensor(coordinator, "temp", device_name),
-        BitAxeSensor(coordinator, "hashRate", device_name),
-        BitAxeSensor(coordinator, "bestDiff", device_name),
-        BitAxeSensor(coordinator, "bestSessionDiff", device_name),
-        BitAxeSensor(coordinator, "sharesAccepted", device_name),
-        BitAxeSensor(coordinator, "sharesRejected", device_name),
-        BitAxeSensor(coordinator, "fanspeed", device_name),
-        BitAxeSensor(coordinator, "fanrpm", device_name),
-        BitAxeSensor(coordinator, "uptimeSeconds", device_name),
+        BitAxeSensor(coordinator, "power", device_name, ip_address),
+        BitAxeSensor(coordinator, "temp", device_name, ip_address),
+        BitAxeSensor(coordinator, "hashRate", device_name, ip_address),
+        BitAxeSensor(coordinator, "bestDiff", device_name, ip_address),
+        BitAxeSensor(coordinator, "bestSessionDiff", device_name, ip_address),
+        BitAxeSensor(coordinator, "sharesAccepted", device_name, ip_address),
+        BitAxeSensor(coordinator, "sharesRejected", device_name, ip_address),
+        BitAxeSensor(coordinator, "fanspeed", device_name, ip_address),
+        BitAxeSensor(coordinator, "fanrpm", device_name, ip_address),
+        BitAxeSensor(coordinator, "uptimeSeconds", device_name, ip_address),
     ]
 
     async_add_entities(sensors, update_before_add=True)
 
+
 class BitAxeSensor(Entity):
     """Representation of a BitAxe sensor."""
 
-    def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_name: str):
+    def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_name: str, ip_address: str):
         super().__init__()
         self.coordinator = coordinator
         self.sensor_type = sensor_type
         self._device_name = device_name
+        self._ip_address = ip_address
         self._attr_name = f"{SENSOR_NAME_MAP.get(sensor_type, f'BitAxe {sensor_type.capitalize()}')} ({device_name})"
-        self._attr_unique_id = f"{device_name}_{sensor_type}"  # Verwenden von device_name statt IP
+        self._attr_unique_id = f"{ip_address}_{sensor_type}"  # unikátní ID založené na IP
         self._attr_icon = self._get_icon(sensor_type)
 
         _LOGGER.debug(f"Initialized BitAxeSensor: {self._attr_name} with unique ID: {self._attr_unique_id}")
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        """Return device information so HA creates a device in the registry."""
+        return DeviceInfo(
+            identifiers={(DOMAIN, self._ip_address)},
+            name=self._device_name,
+            manufacturer="Bitaxe",
+            model="Bitaxe miner",
+            sw_version=self.coordinator.data.get("fw_version"),
+        )
 
     @property
     def state(self):
